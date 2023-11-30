@@ -10,6 +10,7 @@ import { isEmpty } from "lodash-es";
 
 import styles from "./Chat.module.css";
 import Azure from "../../assets/Azure.svg";
+import logo from "../../assets/logo.jpg";
 
 import {
     ChatMessage,
@@ -94,7 +95,8 @@ const Chat = () => {
 
     const getUserInfoList = async () => {
         const userInfoList = await getUserInfo();
-        if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1") {
+        if (userInfoList.length === 0 && window.location.hostname !== "127.0.0.1" &&
+            !window.location.hostname.endsWith(".github.dev")) {
             setShowAuthMessage(true);
         }
         else {
@@ -581,7 +583,7 @@ const Chat = () => {
                         {!messages || messages.length < 1 ? (
                             <Stack className={styles.chatEmptyState}>
                                 <img
-                                    src={Azure}
+                                    src={logo}
                                     className={styles.chatIcon}
                                     aria-hidden="true"
                                 />
